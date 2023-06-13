@@ -1,0 +1,1 @@
+export { MyRegularButton } from './MyRegularButton';

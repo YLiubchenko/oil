@@ -1,46 +1,51 @@
 import './App.css'
-import React, {useEffect, useState} from "react";
+import Item from "./components/feature/Item/Item.tsx";
+import {MyRegularButton} from "./components/base/buttons/MyRegularButton";
+import {Fragment, useState} from "react";
+import {MyTypography} from "./components/base/MyTypography";
 
 function App() {
-    const [info, setInfo] = useState({
-        liter: 0,
-        price: 0
-    });
-    const [literPrice, setByLiter] = useState(0);
+    const [items, setItems] = useState([0]);
+    const [products, setProducts] = useState([]);
+    const [bestChoose, setBestChoose] = useState(null);
+    const [measurement, setMeasurement] = useState('л');
 
-    const onChange = (e: React.ChangeEvent<HTMLInputElement>, key: string) => {
-        const value = +e.target.value;
-        setInfo({...info, [key]: value});
+    const addItem = () => {
+        const copy = [...items];
+        copy.push(1);
+        setItems(copy);
     }
 
-    useEffect(() => {
-        const {liter, price} = info;
-        const result = 1 / liter * price;
+    const setProduct = (product: { index: number; price: number }) => {
+        const copy = [...products];
+        copy[product.index] = product;
+        setProducts(copy);
+    }
 
-        setByLiter(result || 0);
-    }, [info]);
-
-    const getPriceByLitre = (liters: number) =>  (literPrice * liters).toFixed(1);
+    const compareProducts = () => {
+        setBestChoose(products.sort((a, b) => a.price - b.price)[0].index + 1);
+    }
 
     return (
         <div className="main">
-            <div className="wrapper">
-                <div className="input-wrapper">
-                    <label htmlFor="">Літраж</label>
-                    <input type="number" value={info.liter || ''} onChange={(e) => onChange(e, 'liter')}/>
-                </div>
-                <div className="input-wrapper">
-                    <label htmlFor="">Ціна</label>
-                    <input type="number" value={info.price || ''} onChange={(e) => onChange(e, 'price')}/>
-                </div>
-            </div>
             <div>
-                <div>{info.liter}л - {info.price} грн</div>
-                <div>1л - {getPriceByLitre(1)} грн</div>
-                <div>2л - {getPriceByLitre(2)} грн</div>
-                <div>3л - {getPriceByLitre(3)} грн</div>
-                <div>5л - {getPriceByLitre(5)} грн</div>
+                <MyTypography>Вибери одиницю вимірювання</MyTypography>
+                <div>
+                    <MyTypography>літр</MyTypography>
+                    <input type="radio" checked={measurement === "л"} name="measurement" value="л"
+                           onChange={(e) => setMeasurement(e.target.value)}/>
+                    <MyTypography>кг</MyTypography>
+                    <input type="radio" checked={measurement === "кг"} name="measurement" value="кг"
+                           onChange={(e) => setMeasurement(e.target.value)}/>
+                </div>
             </div>
+            {items.map((_, index) => <Item key={index} setProduct={setProduct} index={index}
+                                                                                  measurement={measurement}/>)}
+
+            <MyRegularButton text="Додати товар" onClick={addItem}/>
+            {products.length > 1 && <MyRegularButton text="Порівняти" onClick={compareProducts}/>}
+
+            {!!bestChoose && `Найвигідніший варіант ${bestChoose}`}
         </div>
     )
 }
