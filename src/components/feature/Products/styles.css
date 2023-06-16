@@ -1,0 +1,9 @@
+.products {
+    display: flex;
+    gap: 5px;
+    flex-wrap: wrap;
+    margin: 0 auto;
+    max-height: calc(100vh - 220px);
+    overflow-y: auto;
+    width: 355px;
+}

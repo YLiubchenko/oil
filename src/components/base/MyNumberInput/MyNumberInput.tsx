@@ -1,10 +1,8 @@
-import { ChangeEvent } from 'react';
-
 import {MyTextInputProps} from './types';
 
 import {MyTypography} from "../MyTypography";
 
-export const MyTextInput = ({
+export const MyNumberInput = ({
     placeholder = 'Enter text',
     autoFocus,
     disabled,
@@ -13,15 +11,10 @@ export const MyTextInput = ({
     errorMessage,
     loading,
     margin,
-    type,
     defaultValue,
     onChange,
-    minValue,
     ...props
 }: MyTextInputProps) => {
-    const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
-        onChange(e);
-    };
 
     return (
         <div style={{margin}}>
@@ -38,9 +31,9 @@ export const MyTextInput = ({
                     autoFocus={autoFocus}
                     placeholder={placeholder}
                     disabled={disabled || loading}
-                    type={type}
-                    min={minValue}
-                    onChange={onChange ? handleChange : null}
+                    type="number"
+                    min={0}
+                    onChange={onChange}
                     {...props}
                 />
             </div>

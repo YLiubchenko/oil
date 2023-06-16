@@ -1,8 +1,7 @@
-import { ReactNode } from 'react';
+import {ChangeEvent, ReactNode} from 'react';
 
 export type MyTextInputProps = {
     value?: string | number;
-    minValue?: number;
     /**
      *  @default false
      */
@@ -99,5 +98,5 @@ export type MyTextInputProps = {
     margin?: string;
 
     defaultValue?: string;
-    onChange?: any;
+    onChange: (arg: ChangeEvent<HTMLInputElement>) => void;
 };

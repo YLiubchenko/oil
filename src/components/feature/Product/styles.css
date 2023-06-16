@@ -1,0 +1,61 @@
+.input-wrapper {
+    display: flex;
+    flex-direction: column;
+    width: 100px;
+}
+
+.product {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 5px 10px;
+}
+
+.item-wrapper {
+    display: flex;
+    gap: 15px;
+    align-items: center;
+}
+
+.values {
+    display: flex;
+    flex-direction: column;
+}
+
+input[type="number"] {
+    height: 32px;
+    width: 70px;
+    border: 1px solid #CCCCCC;
+    border-radius: 5px;
+    padding: 0 5px;
+    font-size: 16px;
+}
+
+.value-item {
+    font-size: 16px;
+    padding: 2px 0;
+    letter-spacing: 0.5px;
+}
+
+.trash {
+    position: absolute;
+    right: 0;
+    top: 2px;
+    border: none;
+    background: none;
+}
+
+.trash svg {
+    fill: #d32f2f;
+}
+
+.label-wrapper {
+    position: relative;
+    text-align: center;
+    width: 100%;
+}
+
+.bestVariant {
+    background: #E8F8EA;
+    border-radius: 10px;
+}

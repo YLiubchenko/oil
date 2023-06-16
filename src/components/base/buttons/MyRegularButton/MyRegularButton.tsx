@@ -8,6 +8,7 @@ type MyRegularButtonProps = {
     loading?: boolean;
     disabled?: boolean;
     startIcon?: ReactElement;
+    className?: string;
 };
 
 export const MyRegularButton = ({
@@ -16,12 +17,14 @@ export const MyRegularButton = ({
     loading,
     disabled,
     type,
+    className
 }: MyRegularButtonProps) => {
     return (
         <button
             onClick={onClick}
             disabled={loading || disabled}
             type={type}
+            className={className}
         >
             {text}
         </button>

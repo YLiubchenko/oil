@@ -1,52 +1,76 @@
-import './App.css'
-import Item from "./components/feature/Item/Item.tsx";
+import React from "react";
 import {MyRegularButton} from "./components/base/buttons/MyRegularButton";
-import {Fragment, useState} from "react";
-import {MyTypography} from "./components/base/MyTypography";
+
+import './App.css'
+import {Products} from "./components/feature/Products/Products.tsx";
+import {useDispatch, useSelector} from "react-redux";
+import {bestVariantSelector, measurementSelector, productsSelector} from "./store/selectors.ts";
+import {setBestVariantAction, setMeasurement, setProductAction} from "./store/reducers/productSlice.ts";
+import {MyRadioInput} from "./components/base/MyRadioInput/MyRadioInput.tsx";
 
 function App() {
-    const [items, setItems] = useState([0]);
-    const [products, setProducts] = useState([]);
-    const [bestChoose, setBestChoose] = useState(null);
-    const [measurement, setMeasurement] = useState('л');
+    const measurement = useSelector(measurementSelector);
+    const products = useSelector(productsSelector);
+    const bestVariant = useSelector(bestVariantSelector);
+    const dispatch = useDispatch();
 
     const addItem = () => {
-        const copy = [...items];
-        copy.push(1);
-        setItems(copy);
-    }
+        const id = String(Math.random() * 10000);
 
-    const setProduct = (product: { index: number; price: number }) => {
-        const copy = [...products];
-        copy[product.index] = product;
-        setProducts(copy);
+        dispatch(setProductAction({
+            id,
+            liter: 0,
+            price: 0,
+            byLiter: 0,
+        }));
     }
 
     const compareProducts = () => {
-        setBestChoose(products.sort((a, b) => a.price - b.price)[0].index + 1);
+        let result = 0;
+        let value = products[0].byLiter;
+
+        for (let i = 1; i < products.length; i++) {
+            const {byLiter} = products[i];
+            if (value > byLiter) {
+                result = i;
+                value = byLiter;
+            }
+        }
+
+        dispatch(setBestVariantAction(result + 1));
+    }
+
+    const getMeasurement = (e: React.ChangeEvent<HTMLInputElement>) => {
+        dispatch(setMeasurement(e.target.value));
     }
 
     return (
-        <div className="main">
-            <div>
-                <MyTypography>Вибери одиницю вимірювання</MyTypography>
-                <div>
-                    <MyTypography>літр</MyTypography>
-                    <input type="radio" checked={measurement === "л"} name="measurement" value="л"
-                           onChange={(e) => setMeasurement(e.target.value)}/>
-                    <MyTypography>кг</MyTypography>
-                    <input type="radio" checked={measurement === "кг"} name="measurement" value="кг"
-                           onChange={(e) => setMeasurement(e.target.value)}/>
-                </div>
+        <>
+            <div className="header">
+                <h1>Калькулятор ціни</h1>
             </div>
-            {items.map((_, index) => <Item key={index} setProduct={setProduct} index={index}
-                                                                                  measurement={measurement}/>)}
+            <div className="main">
+                <div>
+                    <h4>Одиниця вимірювання</h4>
+                    <div className="radio-list">
+                        <MyRadioInput className="measurement" name="measurement" value="л"
+                                      onChange={getMeasurement} isChecked={measurement === "л"} label='літр'/>
+                        <MyRadioInput className="measurement" name="measurement" value="кг"
+                                      onChange={getMeasurement} isChecked={measurement === "кг"} label='кг'/>
+                    </div>
+                </div>
 
-            <MyRegularButton text="Додати товар" onClick={addItem}/>
-            {products.length > 1 && <MyRegularButton text="Порівняти" onClick={compareProducts}/>}
-
-            {!!bestChoose && `Найвигідніший варіант ${bestChoose}`}
-        </div>
+                <Products/>
+                <MyRegularButton text="+" onClick={addItem} className="add-product"/>
+                {products.length > 1 &&
+                    <div className='result'>
+                        {!!bestVariant &&
+                            <div>Найвигідніший варіант: <span className="bold-text">{bestVariant}</span></div>}
+                        <MyRegularButton text="Порівняти" onClick={compareProducts} className="result-button"/>
+                    </div>
+                }
+            </div>
+        </>
     )
 }
 
