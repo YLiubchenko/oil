@@ -47,7 +47,7 @@ function App() {
     return (
         <>
             <div className="header">
-                <h1>Калькулятор ціни</h1>
+                <h1>Калькулятор цін</h1>
             </div>
             <div className="main">
                 <div>
