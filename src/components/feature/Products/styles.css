@@ -3,7 +3,16 @@
     gap: 5px;
     flex-wrap: wrap;
     margin: 0 auto;
-    max-height: calc(100vh - 220px);
+    max-height: calc(100vh - 305px);
     overflow-y: auto;
-    width: 355px;
+    max-width: 360px;
+    justify-content: center;
+}
+
+.products::-webkit-scrollbar {
+    width: 2px;
+    height: 2px
+}
+.products::-webkit-scrollbar-button {
+    background: #ccc
 }

@@ -1,3 +1,26 @@
+@font-face {
+    font-family: 'HKNovaRegular';
+    src: url('./assets/fonts/HK-Nova-Regular-R.woff') format("truetype")
+}
+
+@font-face {
+    font-family: 'HKNovaBold';
+    src: url('./assets/fonts/HK-Nova-Bold-R.woff') format("truetype")
+}
+
+header * {
+    box-sizing: border-box;
+    list-style: none;
+    text-decoration: none;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    margin: 0;
+    font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Noto Sans, Ubuntu, Droid Sans, Helvetica Neue, sans-serif;
+}
+
 .main {
     max-width: 425px;
     margin: 0 auto;
@@ -6,10 +29,11 @@
 .header {
     height: 50px;
     width: 100%;
-    background: #ECEEFE;
+    background: #3b1e31;
     text-align: center;
     padding: 10px;
     margin-bottom: 10px;
+    color: white;
 }
 
 .header h1 {
@@ -18,7 +42,7 @@
 }
 
 .result {
-    background: #F2F2F2;
+    background: #f8f1f5;
     border-radius: 15px;
     margin: 0 auto;
     width: 340px;
@@ -32,13 +56,13 @@
 }
 
 .result-button {
-    background: #C8EBDE;
+    background: #3b1e31;
     border-radius: 15px;
     padding: 10px 30px;
     border: none;
     font-size: 16px;
     line-height: 19px;
-    color: black;
+    color: #fff;
 }
 
 .bold-text {
@@ -47,19 +71,19 @@
 
 .add-product {
     padding: 3px 12px;
-    background: #ECEEFE;
+    background: #3b1e31;
     border-radius: 15px;
     border: none;
     width: 50px;
     height: 32px;
     font-size: 20px;
-    color: #2e2e2e;
+    color: #fff;
 }
 
 .measurement {
     width: 16px;
     height: 16px;
-    accent-color: #b06ef5;
+    accent-color: #3b1e31;
     font-size: 15px;
     line-height: 18px;
 }
@@ -75,4 +99,8 @@
     margin: 10px auto 5px;
     display: flex;
     gap: 10px;
+}
+
+button {
+    cursor: pointer;
 }

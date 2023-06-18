@@ -15,6 +15,12 @@ interface IProps {
     product: IProduct;
 }
 
+const measurementLabel = {
+    'л': 'Літраж',
+    'кг': 'Вага',
+    'шт': 'Кількість',
+}
+
 export const Product = ({index, product}: IProps) => {
     const [info, setInfo] = useState({
         liter: 0,
@@ -37,7 +43,7 @@ export const Product = ({index, product}: IProps) => {
     useEffect(() => {
         const {liter, price} = info;
 
-        if (liter && price) {
+        if (+liter && +price) {
             const result = 1 / liter * price;
 
             setByLiter(result || 0);
@@ -62,7 +68,7 @@ export const Product = ({index, product}: IProps) => {
     }
 
     const getMeas = () => {
-        return measurement === 'л' ? 'Літраж' : 'Вага';
+        return measurementLabel[measurement as keyof typeof measurementLabel ];
     }
 
     const deleteProduct = () => {

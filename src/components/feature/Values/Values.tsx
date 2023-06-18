@@ -2,7 +2,7 @@ interface IProps {
     setValue: (arg: number) => string;
 }
 
-const measurement = [1, 2, 3, 5];
+const measurement = [1, 2, 3, 4, 5];
 
 export const Values = ({setValue}: IProps) => {
     return (

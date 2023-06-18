@@ -2,6 +2,8 @@ import {MyTextInputProps} from './types';
 
 import {MyTypography} from "../MyTypography";
 
+import './styles.css';
+
 export const MyNumberInput = ({
     placeholder = 'Enter text',
     autoFocus,

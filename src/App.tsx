@@ -57,10 +57,12 @@ function App() {
                                       onChange={getMeasurement} isChecked={measurement === "л"} label='літр'/>
                         <MyRadioInput className="measurement" name="measurement" value="кг"
                                       onChange={getMeasurement} isChecked={measurement === "кг"} label='кг'/>
+                        <MyRadioInput className="measurement" name="measurement" value="шт"
+                                      onChange={getMeasurement} isChecked={measurement === "шт"} label='шт'/>
                     </div>
                 </div>
 
-                <Products/>
+                <Products />
                 <MyRegularButton text="+" onClick={addItem} className="add-product"/>
                 {products.length > 1 &&
                     <div className='result'>

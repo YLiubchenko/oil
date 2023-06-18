@@ -20,6 +20,7 @@
 .values {
     display: flex;
     flex-direction: column;
+    margin-top: 3px;
 }
 
 input[type="number"] {
@@ -46,16 +47,17 @@ input[type="number"] {
 }
 
 .trash svg {
-    fill: #d32f2f;
+    fill: #582d4a;
 }
 
 .label-wrapper {
     position: relative;
     text-align: center;
     width: 100%;
+    margin-bottom: 8px;
 }
 
 .bestVariant {
-    background: #E8F8EA;
+    background: #f8f1f5;
     border-radius: 10px;
 }
