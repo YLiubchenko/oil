@@ -31,7 +31,7 @@ function App() {
 
         for (let i = 1; i < products.length; i++) {
             const {byLiter} = products[i];
-            if (value > byLiter) {
+            if (byLiter && value > byLiter) {
                 result = i;
                 value = byLiter;
             }

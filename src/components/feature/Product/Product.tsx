@@ -18,7 +18,7 @@ interface IProps {
 const measurementLabel = {
     'л': 'Літраж',
     'кг': 'Вага',
-    'шт': 'Кількість',
+    'шт': 'Штуки',
 }
 
 export const Product = ({index, product}: IProps) => {
