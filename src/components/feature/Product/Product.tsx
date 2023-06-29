@@ -20,6 +20,7 @@ const measurementLabel = {
     'кг': 'Вага',
     'шт': 'Штуки',
 }
+console.log('fffffffff')
 
 export const Product = ({index, product}: IProps) => {
     const [info, setInfo] = useState({
@@ -89,3 +90,5 @@ export const Product = ({index, product}: IProps) => {
         </div>
     );
 };
+
+console.log('chery pickkkkkkk')
