@@ -1,1 +1,0 @@
-export { MyTypography } from './MyTypography';
