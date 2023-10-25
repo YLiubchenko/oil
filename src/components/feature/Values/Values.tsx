@@ -12,11 +12,14 @@ const measurements = {
 };
 
 export const Values = ({setValue}: IProps) => {
-    const measurement = useSelector(measurementSelector);
+    const measurement = useSelector(measurementSelector) as string;
 
     return (
         <div className="values">
-            {measurements[measurement].map(item => <span key={item} className="value-item">{setValue(item)}</span>)}
+            {    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+                // @ts-ignore
+                (measurements[measurement as keyof string] as number[]).map((item: number) => <span key={item} className="value-item">{setValue(item)}</span>)}
+
         </div>
 
     );

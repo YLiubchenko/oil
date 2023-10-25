@@ -5,6 +5,7 @@ type MyTypographyProps = {
 
     noWrap?: boolean;
     zIndex?: number;
+    label?: string;
 
     maxWidth?: number | string;
     minWidth?: number | string;

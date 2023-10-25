@@ -4,6 +4,7 @@ interface IProps {
     icon: ReactNode;
     onClick: () => void;
     className: string;
+    placeholder?: string;
 }
 export const MyIconButton = ({icon, onClick, className}: IProps) => {
     return (
