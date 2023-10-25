@@ -15,16 +15,21 @@ export const MyNumberInput = ({
     margin,
     defaultValue,
     onChange,
+    icon,
     ...props
 }: MyTextInputProps) => {
 
     return (
         <div style={{margin}}>
             {label && (
-                <MyTypography>
-                    {label}
-                    {required && ' *'}
-                </MyTypography>
+                <>
+                    <MyTypography>
+                        {label}
+                        {required && ' *'}
+                    </MyTypography>
+                    {icon}
+                </>
+
             )}
             <div>
                 <input
@@ -33,10 +38,11 @@ export const MyNumberInput = ({
                     autoFocus={autoFocus}
                     placeholder={placeholder}
                     disabled={disabled || loading}
-                    type="number"
+                    type="text"
                     min={0}
                     onChange={onChange}
                     {...props}
+                    pattern="([0-9]+.{0,1}[0-9]*,{0,1})*[0-9]"
                 />
             </div>
             {!disabled && errorMessage && (

@@ -5,7 +5,12 @@ import './App.css'
 import {Products} from "./components/feature/Products/Products.tsx";
 import {useDispatch, useSelector} from "react-redux";
 import {bestVariantSelector, measurementSelector, productsSelector} from "./store/selectors.ts";
-import {setBestVariantAction, setMeasurement, setProductAction} from "./store/reducers/productSlice.ts";
+import {
+    clearProductLIstAction,
+    setBestVariantAction,
+    setMeasurement,
+    setProductAction
+} from "./store/reducers/productSlice.ts";
 import {MyRadioInput} from "./components/base/MyRadioInput/MyRadioInput.tsx";
 
 function App() {
@@ -44,23 +49,31 @@ function App() {
         dispatch(setMeasurement(e.target.value));
     }
 
+    const clearProducts = () => {
+        dispatch(clearProductLIstAction());
+    }
+
     return (
         <>
             <div className="header">
                 <h1>Калькулятор цін</h1>
             </div>
             <div className="main">
-                <div>
-                    <h4>Одиниця вимірювання</h4>
-                    <div className="radio-list">
-                        <MyRadioInput className="measurement" name="measurement" value="л"
-                                      onChange={getMeasurement} isChecked={measurement === "л"} label='літр'/>
-                        <MyRadioInput className="measurement" name="measurement" value="кг"
-                                      onChange={getMeasurement} isChecked={measurement === "кг"} label='кг'/>
-                        <MyRadioInput className="measurement" name="measurement" value="шт"
-                                      onChange={getMeasurement} isChecked={measurement === "шт"} label='шт'/>
+                <div className="header-wrapper">
+                    <div>
+                        <h4>Одиниця вимірювання</h4>
+                        <div className="radio-list">
+                            <MyRadioInput className="measurement" name="measurement" value="л"
+                                          onChange={getMeasurement} isChecked={measurement === "л"} label='літр'/>
+                            <MyRadioInput className="measurement" name="measurement" value="г"
+                                          onChange={getMeasurement} isChecked={measurement === "г"} label='грами'/>
+                            <MyRadioInput className="measurement" name="measurement" value="шт"
+                                          onChange={getMeasurement} isChecked={measurement === "шт"} label='шт'/>
+                        </div>
                     </div>
+                    <MyRegularButton text="Очистити" onClick={clearProducts} className="clear-button result-button"/>
                 </div>
+
 
                 <Products />
                 <MyRegularButton text="+" onClick={addItem} className="add-product"/>
