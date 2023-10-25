@@ -20,7 +20,6 @@ const measurementLabel = {
     'кг': 'Вага',
     'шт': 'Штуки',
 }
-console.log('fffffffff')
 
 export const Product = ({index, product}: IProps) => {
     const [info, setInfo] = useState({
