@@ -1,5 +1,5 @@
-import React, {useEffect, useState} from 'react';
-import {useDispatch, useSelector} from "react-redux";
+import {useEffect, useState} from 'react';
+import {shallowEqual, useDispatch, useSelector} from "react-redux";
 import {MyTypography} from "../../base/MyTypography";
 import {bestVariantSelector, measurementSelector, productsSelector} from "../../../store/selectors.ts";
 import {deleteProductAction, setBestVariantAction, setProductAction} from "../../../store/reducers/productSlice.ts";
@@ -17,10 +17,9 @@ interface IProps {
 
 const measurementLabel = {
     'л': 'Літраж',
-    'кг': 'Вага',
+    'г': 'Грами',
     'шт': 'Штуки',
 }
-console.log('fffffffff')
 
 export const Product = ({index, product}: IProps) => {
     const [info, setInfo] = useState({
@@ -29,12 +28,12 @@ export const Product = ({index, product}: IProps) => {
     });
     const [literPrice, setByLiter] = useState(0);
     const measurement = useSelector(measurementSelector);
-    const products = useSelector(productsSelector);
+    const products = useSelector(productsSelector, shallowEqual);
     const dispatch = useDispatch();
     const bestVariant = useSelector(bestVariantSelector);
 
     const onChange = (e: React.ChangeEvent<HTMLInputElement>, key: string) => {
-        const value = e.target.value;
+        const value = e.target.value.replace(',', '.');
 
         if (+value >= 0 ) {
             setInfo({...info, [key]: value});
@@ -45,7 +44,7 @@ export const Product = ({index, product}: IProps) => {
         const {liter, price} = info;
 
         if (+liter && +price) {
-            const result = 1 / liter * price;
+            const result = price / liter;
 
             setByLiter(result || 0);
             dispatch(setProductAction({
@@ -56,7 +55,7 @@ export const Product = ({index, product}: IProps) => {
 
             }));
         }
-    }, [info]);
+    }, [info, measurement]);
 
     const getPriceByLitre = (liters: number) => (literPrice * liters).toFixed(1);
 
@@ -90,5 +89,3 @@ export const Product = ({index, product}: IProps) => {
         </div>
     );
 };
-
-console.log('chery pickkkkkkk')
