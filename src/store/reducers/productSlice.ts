@@ -30,7 +30,7 @@ const productSlice = createSlice({
             state.products = copy;
         },
         clearProductLIstAction: (state) => {
-            const newId = Date.now();
+            const newId = String(Date.now());
 
             state.products = { [newId]: { ...structuredClone(baseProductState[0]), id: newId } };
         },
