@@ -1,5 +1,5 @@
 import {useEffect, useState} from 'react';
-import {useDispatch, useSelector} from "react-redux";
+import {shallowEqual, useDispatch, useSelector} from "react-redux";
 import {MyTypography} from "../../base/MyTypography";
 import {bestVariantSelector, measurementSelector, productsSelector} from "../../../store/selectors.ts";
 import {deleteProductAction, setBestVariantAction, setProductAction} from "../../../store/reducers/productSlice.ts";
@@ -28,7 +28,7 @@ export const Product = ({index, product}: IProps) => {
     });
     const [literPrice, setByLiter] = useState(0);
     const measurement = useSelector(measurementSelector);
-    const products = useSelector(productsSelector);
+    const products = useSelector(productsSelector, shallowEqual);
     const dispatch = useDispatch();
     const bestVariant = useSelector(bestVariantSelector);
 

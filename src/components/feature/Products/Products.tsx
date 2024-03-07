@@ -1,12 +1,12 @@
 import {Product} from "../Product/Product.tsx";
 
 import './styles.css';
-import {useSelector} from "react-redux";
+import {shallowEqual, useSelector} from "react-redux";
 import {productsSelector} from "../../../store/selectors.ts";
 
 
 export const Products = () => {
-    const products = useSelector(productsSelector);
+    const products = useSelector(productsSelector, shallowEqual);
 
     return (
         <div className="products">

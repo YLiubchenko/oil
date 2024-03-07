@@ -30,9 +30,11 @@ const productSlice = createSlice({
             state.products = copy;
         },
         clearProductLIstAction: (state) => {
-            state.products = structuredClone(baseProductState);
+            const newId = Date.now();
+
+            state.products = { [newId]: { ...structuredClone(baseProductState[0]), id: newId } };
         },
-        setBestVariantAction: (state, { payload }: {payload: number | null}) => {
+        setBestVariantAction: (state, { payload }: { payload: number | null }) => {
             state.bestVariant = payload;
         },
         setMeasurement: (state, { payload }) => {
