@@ -1,4 +1,4 @@
-import {useEffect, useState} from 'react';
+import {ChangeEvent, useEffect, useState} from 'react';
 import {shallowEqual, useDispatch, useSelector} from "react-redux";
 import {MyTypography} from "../../base/MyTypography";
 import {bestVariantSelector, measurementSelector, productsSelector} from "../../../store/selectors.ts";
@@ -9,6 +9,9 @@ import {Trash} from "../../../assets/icons/Trash.tsx";
 
 import './styles.css';
 import {ValueList} from "./ValueList.tsx";
+import {MyNumberInput} from "../../base/MyNumberInput";
+import {Discount} from "../../../assets/icons/Discount.tsx";
+import {CloseIcon} from "../../../assets/icons/CloseIcon.tsx";
 
 interface IProps {
     index: number;
@@ -17,7 +20,6 @@ interface IProps {
 
 const measurementLabel = {
     'л': 'Літраж',
-    'г': 'Грами',
     'шт': 'Штуки',
     'кг': 'Кілограми',
 }
@@ -25,9 +27,12 @@ const measurementLabel = {
 export const Product = ({index, product}: IProps) => {
     const [info, setInfo] = useState({
         liter: 0,
-        price: 0
+        price: 0,
+        discount: 0
     });
     const [literPrice, setByLiter] = useState(0);
+    const [isSale, setIsSale] = useState(false);
+
     const measurement = useSelector(measurementSelector);
     const products = useSelector(productsSelector, shallowEqual);
     const dispatch = useDispatch();
@@ -42,10 +47,10 @@ export const Product = ({index, product}: IProps) => {
     }
 
     useEffect(() => {
-        const {liter, price} = info;
+        const {liter, price, discount} = info;
 
         if (+liter && +price) {
-            const result = price / liter;
+            const result = (price - (price * (discount / 100))) / liter;
 
             setByLiter(result || 0);
             dispatch(setProductAction({
@@ -77,12 +82,31 @@ export const Product = ({index, product}: IProps) => {
         dispatch(setBestVariantAction(null));
     }
 
+    const removeDiscount = () => {
+        setIsSale(false);
+
+        if (info.discount) {
+            setInfo({...info, discount: 0});
+        }
+    }
+
     return (
         <div className={`product ${bestVariant === index + 1 ? 'bestVariant' : ''}`}>
             <div className="label-wrapper">
                 <MyTypography>Продукт {index + 1}</MyTypography>
-                {products.length > 1 && <MyIconButton className='trash' onClick={deleteProduct} icon={<Trash />}/>}
+                <div className='buttonsList'>
+                    {isSale || <MyIconButton className='buttonIcon' onClick={() => setIsSale(true)} icon={<Discount />} /> }
+                    {products.length > 1 && <MyIconButton className='buttonIcon' onClick={deleteProduct} icon={<Trash />}/>}
+                </div>
             </div>
+            <div className='sale-wrapper'>
+
+            { isSale && (
+                   <><MyNumberInput value={info.discount || ''} onChange={(e: ChangeEvent<HTMLInputElement>) => onChange(e, 'discount')}
+                           label='Знижка %' />
+                    <MyIconButton className='buttonIcon' onClick={removeDiscount} icon={<CloseIcon />}/></>
+            )}
+                </div>
             <div className="item-wrapper">
                 <ValueList value={info.liter} setValue={setMeas} valueKey='liter' onChange={onChange} label={getMeas()} />
                 <ValueList value={info.price} setValue={setPrice} valueKey='price' onChange={onChange} label='Ціна' />

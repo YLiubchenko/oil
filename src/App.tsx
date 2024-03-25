@@ -27,6 +27,7 @@ function App() {
             liter: 0,
             price: 0,
             byLiter: 0,
+            discount: 0
         }));
     }
 
@@ -36,6 +37,7 @@ function App() {
 
         for (let i = 1; i < products.length; i++) {
             const {byLiter} = products[i];
+
             if (byLiter && value > byLiter) {
                 result = i;
                 value = byLiter;
@@ -65,8 +67,6 @@ function App() {
                         <div className="radio-list">
                             <MyRadioInput className="measurement" name="measurement" value="л"
                                           onChange={getMeasurement} isChecked={measurement === "л"} label='літр'/>
-                            <MyRadioInput className="measurement" name="measurement" value="г"
-                                          onChange={getMeasurement} isChecked={measurement === "г"} label='грами'/>
                             <MyRadioInput className="measurement" name="measurement" value="кг"
                                           onChange={getMeasurement} isChecked={measurement === "кг"} label='кілограми'/>
                             <MyRadioInput className="measurement" name="measurement" value="шт"
