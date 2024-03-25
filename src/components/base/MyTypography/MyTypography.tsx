@@ -19,10 +19,11 @@ type MyTypographyProps = {
     align?: 'inherit' | 'left' | 'center' | 'right' | 'justify';
 };
 
-export const MyTypography = ({ children, ...other }: MyTypographyProps) => {
+export const MyTypography = ({children, label, ...other}: MyTypographyProps) => {
 
     return (
         <label
+            htmlFor={label}
             {...other}
         >
             {children}

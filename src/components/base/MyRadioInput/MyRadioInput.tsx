@@ -1,5 +1,7 @@
-import {MyTypography} from "../MyTypography";
-import {ChangeEvent} from "react";
+import { MyTypography } from "../MyTypography";
+import { ChangeEvent } from "react";
+
+import './styles.css';
 
 interface IProps {
     isChecked: boolean;
@@ -13,9 +15,9 @@ interface IProps {
 export const MyRadioInput = ({isChecked, className, name, value, onChange, label}: IProps) => {
     return (
         <div className={`${className}-wrapper`}>
-            <input type="radio" checked={isChecked} className={className} name={name} value={value}
+            <input type="radio" id={label} checked={isChecked} className={className} name={name} value={value}
                    onChange={onChange} />
-            <MyTypography>{label}</MyTypography>
+            <MyTypography label={label}>{label}</MyTypography>
         </div>
     );
 };

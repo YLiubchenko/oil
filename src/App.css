@@ -105,6 +105,12 @@ button {
     cursor: pointer;
 }
 
+.clear-button {
+    background: #f8f1f5;
+    color: #3b1e31;
+    margin-top: 10px;
+}
+
 .header-wrapper {
     display: flex;
     flex-direction: column;

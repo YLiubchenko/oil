@@ -31,6 +31,7 @@ export type MyTextInputProps = {
 
     name?: string;
     label?: ReactNode;
+    icon?: ReactNode;
     /**
      *  allow changing label and info icon position
      *  @default 'top-left'
