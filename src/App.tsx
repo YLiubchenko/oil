@@ -67,6 +67,8 @@ function App() {
                                           onChange={getMeasurement} isChecked={measurement === "л"} label='літр'/>
                             <MyRadioInput className="measurement" name="measurement" value="г"
                                           onChange={getMeasurement} isChecked={measurement === "г"} label='грами'/>
+                            <MyRadioInput className="measurement" name="measurement" value="кг"
+                                          onChange={getMeasurement} isChecked={measurement === "кг"} label='кілограми'/>
                             <MyRadioInput className="measurement" name="measurement" value="шт"
                                           onChange={getMeasurement} isChecked={measurement === "шт"} label='шт'/>
                         </div>

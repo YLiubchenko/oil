@@ -19,6 +19,7 @@ const measurementLabel = {
     'л': 'Літраж',
     'г': 'Грами',
     'шт': 'Штуки',
+    'кг': 'Кілограми',
 }
 
 export const Product = ({index, product}: IProps) => {
