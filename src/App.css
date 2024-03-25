@@ -1,0 +1,119 @@
+@font-face {
+    font-family: 'HKNovaRegular';
+    src: url('./assets/fonts/HK-Nova-Regular-R.woff') format("truetype")
+}
+
+@font-face {
+    font-family: 'HKNovaBold';
+    src: url('./assets/fonts/HK-Nova-Bold-R.woff') format("truetype")
+}
+
+header * {
+    box-sizing: border-box;
+    list-style: none;
+    text-decoration: none;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    margin: 0;
+    font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Noto Sans, Ubuntu, Droid Sans, Helvetica Neue, sans-serif;
+}
+
+.main {
+    max-width: 425px;
+    margin: 0 auto;
+}
+
+.header {
+    height: 50px;
+    width: 100%;
+    background: #3b1e31;
+    text-align: center;
+    padding: 10px;
+    margin-bottom: 10px;
+    color: white;
+}
+
+.header h1 {
+    font-size: 20px;
+    line-height: 24px;
+}
+
+.result {
+    background: #f8f1f5;
+    border-radius: 15px;
+    margin: 0 auto;
+    width: 340px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+    padding: 10px;
+    position: fixed;
+    bottom: 20px;
+}
+
+.result-button {
+    background: #3b1e31;
+    border-radius: 15px;
+    padding: 10px 30px;
+    border: none;
+    font-size: 16px;
+    line-height: 19px;
+    color: #fff;
+}
+
+.bold-text {
+    font-weight: bold;
+}
+
+.add-product {
+    padding: 3px 12px;
+    background: #3b1e31;
+    border-radius: 15px;
+    border: none;
+    width: 50px;
+    height: 32px;
+    font-size: 20px;
+    color: #fff;
+}
+
+.measurement {
+    width: 16px;
+    height: 16px;
+    accent-color: #3b1e31;
+    font-size: 15px;
+    line-height: 18px;
+}
+
+.measurement-wrapper {
+    display: flex;
+    align-items: center;
+    gap: 7px;
+}
+
+.radio-list {
+    width: fit-content;
+    margin: 10px auto 5px;
+    display: flex;
+    gap: 10px;
+}
+
+button {
+    cursor: pointer;
+}
+
+.clear-button {
+    background: #f8f1f5;
+    color: #3b1e31;
+    margin-top: 10px;
+}
+
+.header-wrapper {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    align-items: center;
+}
