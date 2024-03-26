@@ -15,6 +15,7 @@ type MyTypographyProps = {
     left?: number | string;
     right?: number | string;
     bottom?: number | string;
+    label?: string;
 
     align?: 'inherit' | 'left' | 'center' | 'right' | 'justify';
 };
